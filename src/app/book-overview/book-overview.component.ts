@@ -11,12 +11,13 @@ import { BookingData } from '../booking-data';
 })
 export class BookOverviewComponent implements OnInit {
 
-  bookingInfo:BookingData = new BookingData();
+  bookingData:BookingData = new BookingData();
 
-  constructor(private bookingData:BookingService) {}
+  constructor(private bookingService:BookingService) {
+  }
 
   ngOnInit(): void {
-    this.bookingData.currentBookingData.subscribe();
+    this.bookingService.currentBookingData.subscribe(bookingDate => this.bookingData = bookingDate)
   }
 
 }

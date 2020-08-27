@@ -1,11 +1,10 @@
 <button (click)="open(modal)">Pick a day</button>
-
+<button class="next-button" cdkStepperNext>Next</button>
 <ng-template #modal let-modal>
     <ngb-datepicker
         [minDate]="minDate"
         (dateSelect)="modal.dismiss()"
-        (dateSelect)="dateSelect($event)"
-        
+        (dateSelect)="dateSelect($event)" 
     >
     </ngb-datepicker>
 </ng-template>

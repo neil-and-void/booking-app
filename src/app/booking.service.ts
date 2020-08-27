@@ -14,8 +14,9 @@ export class BookingService {
 
   constructor() { }
 
-  changeDate(bookingInfo: BookingData){
-    this.bookingDataSource.next(bookingInfo);
+  changeBookingData(bookingData: BookingData){
+    console.log("changin",bookingData);
+    this.bookingDataSource.next(bookingData);
   }
 
 }

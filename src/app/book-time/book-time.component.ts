@@ -8,13 +8,24 @@ import { BookingData } from '../booking-data';
 })
 export class BookTimeComponent implements OnInit {
 
-  time:{hrs:number, mins:number};
-  duration:{hrs:number,mins:number};
+  bookingData:BookingData;
+  rate:number;
 
-  constructor(private bookingData:BookingService) {}
+  constructor(private bookingService: BookingService) {
+    this.rate=1;  
+  }
 
   ngOnInit(): void {
-    
+    this.bookingService.currentBookingData.subscribe(bookingDate => {
+      const day = bookingDate.day;
+      console.log(day);
+      if(day === 0 || day === 6){
+        this.rate = 150;
+      }
+      else if (day > 0 && day < 6){
+        this.rate = 100;
+      }
+    }) 
   }
 
 }

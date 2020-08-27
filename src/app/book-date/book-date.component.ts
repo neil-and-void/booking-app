@@ -14,7 +14,10 @@ export class BookDateComponent implements OnInit {
   bookingData:BookingData = new BookingData();
   minDate:{year:number, month:number, day:number} = {year:0, month:0, day:0};
 
-  constructor(private modalService: NgbModal) {
+  constructor(
+    private modalService: NgbModal,
+    private bookingService: BookingService
+  ) {
     const today = new Date();
     const tmr = new Date(today);
     tmr.setDate(tmr.getDate() + 1);
@@ -25,8 +28,7 @@ export class BookDateComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -37,8 +39,20 @@ export class BookDateComponent implements OnInit {
   }
 
   dateSelect(e){
-    this.bookingData = {...this.bookingData, ...e};
-    console.log(this.bookingData);
+    console.log(e);
+    const date = new Date(e.year, e.month-1, e.day-1);
+    this.bookingData = {
+      ...this.bookingData, 
+      year:e.year,
+      month:e.month-1,
+      date:e.day,
+      day:date.getDay()
+    };
+
+    // notify service
+    this.bookingService.changeBookingData(this.bookingData);
+
+    // enable button
   }
 
 }
