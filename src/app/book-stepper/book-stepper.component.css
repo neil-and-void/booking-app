@@ -1,0 +1,52 @@
+section {
+    display: block;
+}
+ul{
+    margin-top:5px;
+    font-size:0;
+}
+
+li i {
+    cursor: pointer;
+    transition:0.3s
+}
+
+li i:hover{
+    color:#4cd38b;
+}
+
+.progressbar {
+    width:inherit;
+}
+
+.progressbar li {
+    list-style-type: none;
+    float:left;
+    font-size:30px;
+    width: calc(33.33% - 15px);
+    position:relative;
+    text-align: center;
+    color:#5bffa7;
+}
+
+.progressbar li:before{
+    content:"";
+    position: absolute;
+    width: 60%;
+    height:5px;
+    background-color:#5bffa7;
+    right:75px;
+    top:50%;
+}
+
+.progressbar li:first-child:before{
+    content:none;
+}
+
+.progressbar li.active {
+
+}
+
+.progressbar li.active:before {
+    
+}

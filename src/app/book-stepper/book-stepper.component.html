@@ -1,0 +1,14 @@
+
+<section>
+  <div class="step-navigation-bar">
+    <ul class="progressbar">
+      <li class="active"><i class="fas fa-calendar-alt" (click)="onClick(0)"></i></li>
+      <li><i class="fas fa-clock" (click)="onClick(1)"></i></li>
+      <li><i class="fas fa-quote-right" (click)="onClick(2)"></i></li>
+    </ul>      
+  </div>
+  <div [style.display]="selected ? 'block' : 'none'">
+    <!-- Content from the CdkStep is projected here -->
+    <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
+  </div>
+</section>
