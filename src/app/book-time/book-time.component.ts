@@ -17,8 +17,9 @@ export class BookTimeComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookingService.currentBookingData.subscribe(bookingDate => {
+      
+      // update rates
       const day = bookingDate.day;
-      console.log(day);
       if(day === 0 || day === 6){
         this.rate = 150;
       }

@@ -39,14 +39,13 @@ export class BookDateComponent implements OnInit {
   }
 
   dateSelect(e){
-    console.log(e);
-    const date = new Date(e.year, e.month-1, e.day-1);
+    const date = new Date(e.year, e.month-1, e.day-1); //TODO: why do we need to subtract 1 on day
     this.bookingData = {
       ...this.bookingData, 
-      year:e.year,
-      month:e.month-1,
-      date:e.day,
-      day:date.getDay()
+      year:date.getFullYear(),
+      month:date.getMonth(),
+      date:date.getDate(),
+      day:date.getDay(),
     };
 
     // notify service

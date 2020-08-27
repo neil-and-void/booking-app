@@ -1,3 +1,5 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~open-iconic/font/css/open-iconic-bootstrap.css';
 /* You can add global styles to this file, and also import other style files */
 html,body{
     background-color:#F2EFE5;
@@ -6,5 +8,3 @@ html,body{
     margin:0;
 }
 
-@import '~bootstrap/dist/css/bootstrap.min.css';
-@import '~open-iconic/font/css/open-iconic-bootstrap.css';
