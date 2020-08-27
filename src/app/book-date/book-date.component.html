@@ -1,1 +1,11 @@
-<div>hi</div>
+<button (click)="open(modal)">Pick a day</button>
+
+<ng-template #modal let-modal>
+    <ngb-datepicker
+        [minDate]="minDate"
+        (dateSelect)="modal.dismiss()"
+        (dateSelect)="dateSelect($event)"
+        
+    >
+    </ngb-datepicker>
+</ng-template>
