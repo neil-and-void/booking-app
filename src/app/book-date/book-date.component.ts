@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 
 import { BookingService } from '../booking.service';
 import { BookingData } from '../booking-data';
@@ -13,6 +13,9 @@ export class BookDateComponent implements OnInit {
 
   bookingData:BookingData = new BookingData();
   minDate:{year:number, month:number, day:number} = {year:0, month:0, day:0};
+  selectedDateStr:string;
+  datepicker:NgbDatepicker;
+  disabled: boolean = true;
 
   constructor(
     private modalService: NgbModal,
@@ -30,8 +33,13 @@ export class BookDateComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  navigate(number: number) {
+    const {state, calendar} = this.datepicker;
+    this.datepicker.navigateTo(calendar.getNext(state.firstDate, 'm', number));
+  }
+
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, {centered:true, windowClass:"date-modal"}).result.then((result) => {
       console.log(result);
     }, (reason) => {
       console.log(reason);
@@ -39,13 +47,26 @@ export class BookDateComponent implements OnInit {
   }
 
   dateSelect(e){
-    const date = new Date(e.year, e.month-1, e.day-1); //TODO: why do we need to subtract 1 on day
+    const date = new Date(e.year, e.month-1, e.day); //TODO: why do we need to subtract 1 on day
+    console.log(date);
+    // get day
+    const day = date.getDay();
+
+    let rate;
+    if(day === 0 || day === 6){
+      rate = 150;
+    }
+    else if (day > 0 && day < 6){
+      rate = 100;
+    }
+
     this.bookingData = {
       ...this.bookingData, 
       year:date.getFullYear(),
       month:date.getMonth(),
       date:date.getDate(),
       day:date.getDay(),
+      rate:rate
     };
 
     // notify service

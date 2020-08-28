@@ -12,5 +12,9 @@
     border-style:solid;
     border-width: 1px;
     border-color: #d6d6d6;
+}
 
+.book-content {
+    display: flex;
+    flex-direction: column;
 }

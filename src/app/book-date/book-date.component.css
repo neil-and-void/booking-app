@@ -1,0 +1,24 @@
+::ng-deep .date-modal .modal-dialog{
+    width:min-content;
+}
+
+.date-button{
+    display: block;
+    background-color:white;
+    height:35px;
+    border:1px solid #F66B47;
+    color:black;
+    border-radius: 5px;
+    margin-top:20%;
+    margin-left:10%;
+    width: 80%;
+}
+
+.date-button:active, .date-button:focus {
+    outline-color:#F66B47;
+    outline-width: 2px;
+    border:1px solid #F66B47;
+}
+
+
+

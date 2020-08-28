@@ -1,4 +1,21 @@
-<input placeholder="hours">
-<input placeholder="minutes">
-<div>rate is {{rate}}</div>
-<button class="next-button" cdkStepperNext>Next</button>
+<h1>What's a good time to come?</h1>
+
+<p>The hourly rate is {{rate}}</p>
+
+<input
+    class="time-select"
+    readonly
+    (click)="open()">
+<ng-template #modal let-modal class="time-modal">
+</ng-template>
+<p>How long do you need us for?</p>
+<div class="duration-wrapper">
+    <h4>hours</h4>
+<input
+    class="hours-input"
+    type="number">
+    <h4>minutes</h4>
+<input 
+    class="minutes-input"
+    type="number">
+</div>

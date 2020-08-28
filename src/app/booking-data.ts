@@ -9,4 +9,6 @@ export class BookingData {
 
     duration_hrs: number;
     duration_mins: number;
+
+    rate:number;
 }

@@ -1,5 +1,5 @@
 section {
-    display: block;
+    height: 100%;
 }
 ul{
     margin-top:5px;
@@ -12,7 +12,11 @@ li i {
 }
 
 li i:hover{
-    color:#4cd38b;
+    color:#2f99b1;
+}
+
+.step-navigation-bar {
+    display: block;
 }
 
 .progressbar {
@@ -26,7 +30,7 @@ li i:hover{
     width: calc(33.33% - 15px);
     position:relative;
     text-align: center;
-    color:#5bffa7;
+    color:#53bed6;
 }
 
 .progressbar li:before{
@@ -34,7 +38,7 @@ li i:hover{
     position: absolute;
     width: 60%;
     height:5px;
-    background-color:#5bffa7;
+    background-color:#53bed6;
     right:75px;
     top:50%;
 }
@@ -49,4 +53,26 @@ li i:hover{
 
 .progressbar li.active:before {
     
+}
+
+.book-content {
+    height:100%;
+    width:100%;
+}
+
+.button-group{     
+    position:absolute; 
+    bottom:0;
+    margin-left:97px;
+    margin-bottom: 30px;
+}
+
+.button-group > button {
+    background-color:#F66A47;
+    border-radius: 5px;
+    color:white;
+    margin-right: 6px;
+    height:40px;
+    width:100px;
+    border:0px;
 }

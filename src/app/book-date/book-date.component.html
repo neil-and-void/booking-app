@@ -1,10 +1,15 @@
-<button (click)="open(modal)">Pick a day</button>
-<button class="next-button" cdkStepperNext>Next</button>
-<ng-template #modal let-modal>
-    <ngb-datepicker
-        [minDate]="minDate"
-        (dateSelect)="modal.dismiss()"
-        (dateSelect)="dateSelect($event)" 
-    >
-    </ngb-datepicker>
-</ng-template>
+<div class="book-content-title">
+    <h1 class="book-title">When are we moving?</h1>
+    <button class="date-button" (click)="open(modal)">{{bookingData.date ? bookingData.date : "Pick a day!"}}</button>
+    <ng-template #modal let-modal class="dp-modal">
+        <div>
+            <ngb-datepicker
+                class="date-picker"
+                [minDate]="minDate"
+                (dateSelect)="modal.dismiss()"
+                (dateSelect)="dateSelect($event)" 
+            >
+            </ngb-datepicker>
+        </div>
+    </ng-template>
+</div>

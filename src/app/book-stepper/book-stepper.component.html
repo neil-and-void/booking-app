@@ -7,8 +7,12 @@
       <li><i class="fas fa-quote-right" (click)="onClick(2)"></i></li>
     </ul>      
   </div>
-  <div [style.display]="selected ? 'block' : 'none'">
+  <div class="book-content">
     <!-- Content from the CdkStep is projected here -->
     <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
+    <div class="button-group">
+      <button class="book-next-button" cdkStepperPrevious>Back</button>
+      <button class="book-next-button" cdkStepperNext>Next</button>
+    </div>
   </div>
 </section>

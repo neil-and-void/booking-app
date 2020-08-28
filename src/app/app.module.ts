@@ -9,6 +9,7 @@ import { BookTimeComponent } from './book-time/book-time.component';
 import { BookStepperComponent } from './book-stepper/book-stepper.component';
 import { BookOverviewComponent } from './book-overview/book-overview.component';
 import { BookDateComponent } from './book-date/book-date.component';
+import { TimeListComponent } from './time-list/time-list.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { BookDateComponent } from './book-date/book-date.component';
     BookStepperComponent,
     BookOverviewComponent,
     BookDateComponent,
+    TimeListComponent,
   ],
   imports: [
     BrowserModule,
