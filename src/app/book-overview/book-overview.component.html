@@ -1,9 +1,9 @@
 <h1>You're quoted for...</h1>
 <div class="summary">
     <ul>
-        <li><p>Date: tuesady august 24</p></li>
-        <li><p>Time: 9:30am</p></li>
-        <li><p>Rate: 3 hrs & 30 min x rate</p></li> 
+        <li><p>Date: {{bookingData.date + "/" + bookingData.month + "/" + bookingData.year}}</p></li>
+        <li><p>Time: {{bookingData.time}}</p></li>
+        <li><p>Rate: {{bookingData.duration_hrs ? bookingData.duration_hrs : 0}} hrs & {{bookingData.duration_mins? bookingData.duration_mins : 0}} mins x ${{bookingData.rate}}/hr</p></li> 
     </ul>
 </div>
 <h3>Total: ${{this.overrall}}</h3>

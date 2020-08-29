@@ -11,10 +11,6 @@ li i {
     transition:0.2s
 }
 
-li i:hover{
-    color:#2f99b1;
-}
-
 .step-navigation-bar {
     display: block;
 }
@@ -30,15 +26,28 @@ li i:hover{
     width: calc(33.33% - 15px);
     position:relative;
     text-align: center;
+    color:rgb(126, 126, 126);
+    pointer-events: none;
+}
+
+.progressbar li.active {
+    list-style-type: none;
+    float:left;
+    font-size:30px;
+    width: calc(33.33% - 15px);
+    position:relative;
+    text-align: center;
     color:#53bed6;
+    pointer-events: all;
 }
 
 .progressbar li:before{
     content:"";
     position: absolute;
+    border-radius: 5px;
     width: 60%;
     height:5px;
-    background-color:#53bed6;
+    background-color:grey;
     right:75px;
     top:50%;
 }
@@ -47,12 +56,23 @@ li i:hover{
     content:none;
 }
 
-.progressbar li.active {
-
+.progressbar li.active:first-child:before {
+    content:none;
 }
 
 .progressbar li.active:before {
-    
+    content:"";
+    position: absolute;
+    border-radius: 5px;
+    width: 60%;
+    height:5px;
+    background-color:#53bed6;
+    right:75px;
+    top:50%; 
+}
+
+.progressbar li i.active:hover{
+    color:#2f99b1;
 }
 
 .book-content {
@@ -67,7 +87,7 @@ li i:hover{
     margin-bottom: 30px;
 }
 
-.button-group > button {
+.button-group .book-next-button {
     background-color:#F66A47;
     border-radius: 5px;
     color:white;
@@ -76,3 +96,8 @@ li i:hover{
     width:100px;
     border:0px;
 }
+
+.button-group .disabled {
+    background-color:rgb(189, 189, 189) !important;
+}
+

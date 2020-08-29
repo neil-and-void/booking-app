@@ -12,28 +12,30 @@ import { BookingData } from '../booking-data';
 export class BookOverviewComponent implements OnInit {
 
   bookingData:BookingData = new BookingData();
-  overrall:number;
+  overrall:string;
 
   constructor(private bookingService:BookingService) {
   }
 
   ngOnInit(): void {
-    this.bookingService.currentBookingData.subscribe(bookingDate => {
-      this.bookingData = bookingDate;
-      // const hours = bookingDate.duration_hrs;
-      // const minutes = bookingDate.duration_mins;
-      const hours = 6;
-      const minutes = 30;
-      const rate = bookingDate.rate;
+    this.bookingService.currentBookingData.subscribe(bookingData => {
 
+      this.bookingData = bookingData;
 
+      const hours = bookingData.duration_hrs;
+      const minutes = bookingData.duration_mins;
+      const rate = bookingData.rate;
 
-      const hourlyCost = hours*rate;
-      const minutesCost = (minutes/60)*rate;
-      this.overrall = hourlyCost+minutesCost
+      const total = this.caculateTotal(hours, minutes, rate);
 
-
+      this.overrall = total.toFixed(2);
     })
+  }
+
+  private caculateTotal(hours, minutes, rate): number {
+    const hourlyCost = hours*rate;
+    const minutesCost = (minutes/60)*rate;
+    return hourlyCost + minutesCost;
   }
 
 }

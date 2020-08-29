@@ -1,11 +1,11 @@
 p {
     text-align: center;
-
+    margin:20px 0px 20px;
 }
 
 .time-select {
-    width:100px;
-    margin-left:150px;
+    width:5em;
+    margin-left:calc(200px - 2.5em);
     font-size: x-large;
 }
 

@@ -1,9 +1,16 @@
 .time-list {
-    margin: 5px 0px 5px 0px;
+    padding:0;
+    margin:0 20px 0 20px;
+}
+
+::ng-deep .time-modal .modal-dialog{
+    width:min-content;
 }
 
 .time-list li{
+    cursor: pointer;
     list-style: none;
-    overflow-y:scroll;
+    display: inline-block;
     font-size: x-large;
+    white-space: nowrap;
 }

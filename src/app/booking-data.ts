@@ -4,8 +4,7 @@ export class BookingData {
     date: number;
     day: number;
 
-    time_hrs: number;
-    time_mins: number;
+    time:string;
 
     duration_hrs: number;
     duration_mins: number;

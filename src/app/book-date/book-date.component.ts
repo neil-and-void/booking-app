@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbDatepicker, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { BookingService } from '../booking.service';
 import { BookingData } from '../booking-data';
+import { BookingStep } from '../booking-step';
 
 @Component({
   selector: 'app-book-date',
@@ -16,6 +17,7 @@ export class BookDateComponent implements OnInit {
   selectedDateStr:string;
   datepicker:NgbDatepicker;
   disabled: boolean = true;
+  modalReference: NgbModalRef;
 
   constructor(
     private modalService: NgbModal,
@@ -31,7 +33,12 @@ export class BookDateComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.bookingService.currentBookingData.subscribe(bookingData => {
+      console.log(bookingData);
+      this.bookingData = bookingData;
+    })
+  }
 
   navigate(number: number) {
     const {state, calendar} = this.datepicker;
@@ -39,7 +46,8 @@ export class BookDateComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content, {centered:true, windowClass:"date-modal"}).result.then((result) => {
+
+    this.modalService.open(content, {centered:true, windowClass:"date-modal", }).result.then((result) => {
       console.log(result);
     }, (reason) => {
       console.log(reason);
@@ -47,10 +55,15 @@ export class BookDateComponent implements OnInit {
   }
 
   dateSelect(e){
-    const date = new Date(e.year, e.month-1, e.day); //TODO: why do we need to subtract 1 on day
-    console.log(date);
-    // get day
-    const day = date.getDay();
+    const dateObj = new Date(e.year, e.month-1, e.day); 
+    console.log(dateObj);
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth()+1;
+    const date = dateObj.getDate();    
+    const day = dateObj.getDay();
+
+    // update date string
+    this.selectedDateStr = date + "/" + month + "/" + year
 
     let rate;
     if(day === 0 || day === 6){
@@ -60,12 +73,16 @@ export class BookDateComponent implements OnInit {
       rate = 100;
     }
 
+    // update data
     this.bookingData = {
-      ...this.bookingData, 
-      year:date.getFullYear(),
-      month:date.getMonth(),
-      date:date.getDate(),
-      day:date.getDay(),
+      // reset the time and duration here
+      time:null,
+      duration_hrs:null,
+      duration_mins:null,
+      year:year,
+      month:month,
+      date:date,
+      day:day,
       rate:rate
     };
 
@@ -73,6 +90,10 @@ export class BookDateComponent implements OnInit {
     this.bookingService.changeBookingData(this.bookingData);
 
     // enable button
+    this.bookingService.changeBookingStep({
+      highestStep:1,
+      completed:true,
+    });
   }
 
 }

@@ -1,21 +1,25 @@
 <h1>What's a good time to come?</h1>
 
-<p>The hourly rate is {{rate}}</p>
 
 <input
+    value={{bookingData.time}}
     class="time-select"
     readonly
     (click)="open()">
 <ng-template #modal let-modal class="time-modal">
 </ng-template>
-<p>How long do you need us for?</p>
+<p>How long do you need us for? The hourly rate is {{rate}}</p>
 <div class="duration-wrapper">
     <h4>hours</h4>
-<input
-    class="hours-input"
-    type="number">
-    <h4>minutes</h4>
-<input 
-    class="minutes-input"
-    type="number">
+    <input
+        class="hours-input"
+        type="number"
+        value={{bookingData.duration_hrs}}
+        (input)="onHourChange($event.target.value)">
+        <h4>minutes</h4>
+    <input 
+        class="minutes-input"
+        type="number"
+        value={{bookingData.duration_mins}}
+        (input)="onMinuteChange($event.target.value)">
 </div>

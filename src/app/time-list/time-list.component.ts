@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-time-list',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./time-list.component.css']
 })
 export class TimeListComponent implements OnInit {
+  @Input() modal: NgbModal;
 
   timesArr:Array<string> = [
     "9:00 am",
@@ -22,13 +24,15 @@ export class TimeListComponent implements OnInit {
     "2:30 pm",
   ];
 
-  constructor() { }
+  constructor(
+    private activeModal: NgbActiveModal
+  ) { }
 
   ngOnInit(): void {
   }
 
   gettime(time){
-    console.log(time);
+    this.activeModal.close(time);
   }
 
 }

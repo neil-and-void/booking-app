@@ -1,6 +1,10 @@
 <div class="time-list-wrapper">
     <ul class="time-list">
-        <li *ngFor="let time of timesArr">{{time}}</li>
+        <li 
+            *ngFor="let time of timesArr"
+            (click)="gettime(time)">
+                {{time}}
+            </li>
     </ul>
 </div>
 

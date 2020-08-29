@@ -1,9 +1,14 @@
 <div class="book-content-title">
     <h1 class="book-title">When are we moving?</h1>
-    <button class="date-button" (click)="open(modal)">{{bookingData.date ? bookingData.date : "Pick a day!"}}</button>
+    <button 
+      class="date-button" 
+      (click)="open(modal)">
+        {{selectedDateStr ? selectedDateStr : "Pick a day!"}}
+    </button>
     <ng-template #modal let-modal class="dp-modal">
         <div>
             <ngb-datepicker
+                firstDayOfWeek="7"
                 class="date-picker"
                 [minDate]="minDate"
                 (dateSelect)="modal.dismiss()"
