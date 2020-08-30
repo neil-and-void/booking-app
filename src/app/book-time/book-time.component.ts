@@ -32,7 +32,11 @@ export class BookTimeComponent implements OnInit {
   ngOnInit(): void {
     this.bookingService.currentBookingData.subscribe(bookingData => {
       this.bookingData = bookingData;
-      this.rate = bookingData.rate;
+      if(bookingData.day === 0 || bookingData.day === 6){
+        this.bookingData.rate = 150;
+      } else {
+        this.bookingData.rate = 100; 
+      }
     });
 
     this.bookingService.currentBookingStep.subscribe(bookingStep => {

@@ -3,7 +3,6 @@ import { NgbModal, NgbDatepicker, NgbModalRef } from '@ng-bootstrap/ng-bootstrap
 
 import { BookingService } from '../booking.service';
 import { BookingData } from '../booking-data';
-import { BookingStep } from '../booking-step';
 
 @Component({
   selector: 'app-book-date',
@@ -64,14 +63,6 @@ export class BookDateComponent implements OnInit {
     // update date string
     this.selectedDateStr = date + "/" + month + "/" + year
 
-    let rate;
-    if(day === 0 || day === 6){
-      rate = 150;
-    }
-    else if (day > 0 && day < 6){
-      rate = 100;
-    }
-
     // update data
     this.bookingData = {
       // reset the time and duration here
@@ -82,7 +73,7 @@ export class BookDateComponent implements OnInit {
       month:month,
       date:date,
       day:day,
-      rate:rate
+      rate:null
     };
 
     // notify services
