@@ -1,5 +1,5 @@
 <div class="book-menu">
-    <app-book-stepper>
+    <app-book-stepper (selectionChange)="selectionChange($event)">
         <cdk-step>
             <app-book-date></app-book-date>
         </cdk-step>

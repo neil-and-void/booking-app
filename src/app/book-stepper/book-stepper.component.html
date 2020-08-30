@@ -11,8 +11,8 @@
     <!-- Content from the CdkStep is projected here -->
     <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
     <div class="button-group">
-      <button class="book-next-button" cdkStepperPrevious>Back</button>
-      <button class="book-next-button" [ngClass]="{'disabled': bookingStep.completed !== true}" [disabled]="!bookingStep.completed" cdkStepperNext>Next</button>
+      <button class="book-nav-button" cdkStepperPrevious>Back</button>
+      <button class="book-nav-button" [ngClass]="{'disabled': bookingStep.completed !== true}" [disabled]="!bookingStep.completed"  cdkStepperNext>Next</button>
     </div>
   </div>
 </section>

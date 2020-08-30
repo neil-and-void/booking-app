@@ -1,6 +1,9 @@
 .time-list {
     padding:0;
-    margin:0 20px 0 20px;
+    width:inherit;
+    margin:0;
+    height: 350px;
+    overflow-y:scroll;
 }
 
 ::ng-deep .time-modal .modal-dialog{
@@ -10,7 +13,20 @@
 .time-list li{
     cursor: pointer;
     list-style: none;
+    text-align:center;
     display: inline-block;
+    width: 200px;
     font-size: x-large;
     white-space: nowrap;
+    border-bottom:1px solid grey;
 }
+
+.time-list li:hover {
+    transition: 0.2s;
+    background-color: rgb(228, 228, 228);
+}
+
+.time-list li:last-child {
+    border-bottom:0px;
+}
+

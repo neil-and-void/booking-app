@@ -1,6 +1,4 @@
-<h1>What's a good time to come?</h1>
-
-
+<h1>When should we swing by?</h1>
 <input
     value={{bookingData.time}}
     class="time-select"
@@ -8,7 +6,10 @@
     (click)="open()">
 <ng-template #modal let-modal class="time-modal">
 </ng-template>
-<p>How long do you need us for? The hourly rate is {{rate}}</p>
+<div class="duration-text">
+    <p>How long do you need us for?<p>
+    <p> The hourly rate is ${{rate}}.</p>
+</div>
 <div class="duration-wrapper">
     <h4>hours</h4>
     <input
@@ -23,3 +24,6 @@
         value={{bookingData.duration_mins}}
         (input)="onMinuteChange($event.target.value)">
 </div>
+<p *ngIf="durationErr"  class="warning">Sorry, we only support delivery times between 1-8 hours</p>
+<p *ngIf="hoursErr" class="warning">Enter value between 1-8 for hours</p>
+<p *ngIf="minsErr" class="warning">Enter value between 0-59 for minutes</p>

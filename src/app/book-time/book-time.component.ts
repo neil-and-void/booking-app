@@ -5,6 +5,7 @@ import { BookingService } from '../booking.service';
 import { BookingData } from '../booking-data';
 import { TimeListComponent } from '../time-list/time-list.component';
 import { BookingStep } from '../booking-step';
+import { templateJitUrl } from '@angular/compiler';
 
 
 @Component({
@@ -17,6 +18,11 @@ export class BookTimeComponent implements OnInit {
   bookingData:BookingData;
   bookingStep: BookingStep;
   rate:number;
+  hoursErr:boolean = false;
+  durationErr:boolean = false;
+  minsErr:boolean = false;
+  timeErr:boolean = false;
+
 
   constructor(
     private bookingService: BookingService,
@@ -50,56 +56,61 @@ export class BookTimeComponent implements OnInit {
   }
 
   onHourChange(hourStr:string):void {
-    let hour:number;
-    if(hourStr.length > 0){
-      hour = parseInt(hourStr);
-    } else {
-      hour = 0;
-    }
+    const hour = parseInt(hourStr);
     this.bookingData = {
       ...this.bookingData,
       duration_hrs:hour,
     }
 
     this.validateCompleted();
-
   }
 
   onMinuteChange(minuteStr:string):void {
-    let minute;
-    if(minuteStr.length > 0){
-      minute = parseInt(minuteStr);
-    } else { // empty string
-      minute = 0;
-    }
+    const minute = parseInt(minuteStr);
     this.bookingData = {
       ...this.bookingData,
       duration_mins:minute,
     }
 
     this.validateCompleted();
-
   }
 
   // validate constraints on time, hours and minutes
-  private durationIsValid(): boolean{
-    const mins = this.bookingData.duration_mins;
-    const hours = this.bookingData.duration_hrs;
-    const time = this.bookingData.time;
+  private inputsAreValid(): boolean{
+    let mins:number = this.bookingData.duration_mins;
+    let hours:number = this.bookingData.duration_hrs;
+    const time:string = this.bookingData.time;
 
-    return time !== undefined
-      && hours !== undefined
-      && mins !== undefined 
-      && 0 <= mins 
-      && mins <= 59
-      && 0 <= hours 
-      && hours <= 8
-      && hours+(mins/60) <= 8
-      && hours+(mins/60) >= 1;
+    this.timeErr = true;
+    if(typeof time === 'string' && time.length > 0){
+      this.timeErr = false;
+    }
+
+    // check hours are valid
+    this.hoursErr = true;
+    if(typeof hours === 'number' && 1 <= hours && hours <= 8){
+      this.hoursErr = false;
+    }
+
+    // check mins are valid 
+    this.minsErr = true;
+    if(typeof mins === 'number' && 0 <= mins && mins <= 59){
+      this.minsErr = false;
+    }
+
+    this.durationErr = true;
+    if(isNaN(mins)){
+      mins = 0;
+    }
+    if(typeof hours === 'number' && typeof mins === 'number' && 1 <=hours+((mins&60)/60) && hours+((mins%60)/60) <= 8 ){
+      this.durationErr = false;
+    }
+
+    return !this.timeErr && !this.durationErr && !this.hoursErr && !this.minsErr;
   }
 
   private validateCompleted(): void{
-    if(this.durationIsValid()){
+    if(this.inputsAreValid()){
       // enable buttons and mark as completed form 
       this.bookingStep = {highestStep:2, completed:true}
       this.bookingService.changeBookingData(this.bookingData);

@@ -71,7 +71,7 @@ li i {
     top:50%; 
 }
 
-.progressbar li i.active:hover{
+.progressbar li.active i:hover{
     color:#2f99b1;
 }
 
@@ -87,7 +87,7 @@ li i {
     margin-bottom: 30px;
 }
 
-.button-group .book-next-button {
+.button-group .book-nav-button {
     background-color:#F66A47;
     border-radius: 5px;
     color:white;
@@ -95,6 +95,11 @@ li i {
     height:40px;
     width:100px;
     border:0px;
+}
+
+.button-group .book-nav-button:hover {
+    transition:0.2s;
+    background-color:#da5a3a;
 }
 
 .button-group .disabled {

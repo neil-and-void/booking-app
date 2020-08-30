@@ -4,6 +4,7 @@ import { NgbModal, NgbDatepicker, NgbModalRef } from '@ng-bootstrap/ng-bootstrap
 import { BookingService } from '../booking.service';
 import { BookingData } from '../booking-data';
 import { BookingStep } from '../booking-step';
+import { CdkStep } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-book-date',
@@ -35,7 +36,6 @@ export class BookDateComponent implements OnInit {
 
   ngOnInit(): void { 
     this.bookingService.currentBookingData.subscribe(bookingData => {
-      console.log(bookingData);
       this.bookingData = bookingData;
     })
   }
@@ -56,7 +56,7 @@ export class BookDateComponent implements OnInit {
 
   dateSelect(e){
     const dateObj = new Date(e.year, e.month-1, e.day); 
-    console.log(dateObj);
+
     const year = dateObj.getFullYear();
     const month = dateObj.getMonth()+1;
     const date = dateObj.getDate();    

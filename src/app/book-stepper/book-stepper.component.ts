@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Output } from '@angular/core';
 import { CdkStepper } from '@angular/cdk/stepper';
 
 import { BookingService } from '../booking.service';
@@ -28,8 +28,8 @@ export class BookStepperComponent extends CdkStepper implements OnInit{
     })
   }
 
-  onClick(index: number): void {
+  onClick(index:number): void {
     this.selectedIndex = index;
   }
-
+  
 }

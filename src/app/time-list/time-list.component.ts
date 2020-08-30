@@ -10,6 +10,10 @@ export class TimeListComponent implements OnInit {
   @Input() modal: NgbModal;
 
   timesArr:Array<string> = [
+    "7:00 am",
+    "7:30 am",
+    "8:00 am",
+    "8:30 am",
     "9:00 am",
     "9:30 am",
     "10:00 am",
