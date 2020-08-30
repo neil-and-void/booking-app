@@ -2,17 +2,17 @@
 <section>
   <div class="step-navigation-bar">
     <ul class="progressbar">
-      <li [ngClass]="{'active': bookingStep.highestStep >= 0}"><i class="fas fa-calendar-alt" (click)="onClick(0)"></i></li>
-      <li [ngClass]="{'active': bookingStep.highestStep >= 1}"><i class="fas fa-clock" (click)="onClick(1)"></i></li>
-      <li [ngClass]="{'active': bookingStep.highestStep >= 2}"><i class="fas fa-quote-right" (click)="onClick(2)"></i></li>
+      <li class="active"><i class="fas fa-calendar-alt" (click)="onClick(0)"></i></li>
+      <li [ngClass]="{'active': bookingStep.completedSteps[0]}"><i class="fas fa-clock" (click)="onClick(1)"></i></li>
+      <li [ngClass]="{'active': bookingStep.completedSteps[1]}"><i class="fas fa-quote-right" (click)="onClick(2)"></i></li>
     </ul>      
   </div>
   <div class="book-content">
     <!-- Content from the CdkStep is projected here -->
     <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
     <div class="button-group">
-      <button class="book-nav-button" cdkStepperPrevious>Back</button>
-      <button class="book-nav-button" [ngClass]="{'disabled': bookingStep.completed !== true}" [disabled]="!bookingStep.completed"  cdkStepperNext>Next</button>
+      <button class="book-nav-button" [ngClass]="{'disabled':bookingStep.currentStep === 0}" cdkStepperPrevious>Back</button>
+      <button class="book-nav-button" [ngClass]="{'disabled': bookingStep.completedSteps[bookingStep.currentStep] !== true}" [disabled]="!bookingStep.completedSteps[bookingStep.currentStep]"  cdkStepperNext>Next</button>
     </div>
   </div>
 </section>

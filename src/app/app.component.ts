@@ -10,6 +10,7 @@ import { BookingStep } from './booking-step';
 export class AppComponent implements OnInit{
 
   bookingStep: BookingStep;
+  currentStep: number;
   title = 'booking-app';
 
   constructor(private bookingService:BookingService){
@@ -23,9 +24,11 @@ export class AppComponent implements OnInit{
   }
 
   selectionChange(event){
-    // const step = event.selectedIndex;
-    // const bookingStep = this.bookingStep;
-    console.log(event)
-    // this.bookingService.changeBookingStep({completed:bookingStep.completed , highestStep:Math.max(bookingStep.highestStep, step)});
+    // compare highest step with current step and disable button accordingly
+
+    this.bookingService.changeBookingStep({
+      ...this.bookingStep,
+      currentStep:event.selectedIndex
+      });
   }
 }

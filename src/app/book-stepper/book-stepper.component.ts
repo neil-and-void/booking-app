@@ -13,7 +13,7 @@ import { Directionality } from '@angular/cdk/bidi';
 })
 export class BookStepperComponent extends CdkStepper implements OnInit{
 
-  bookingStep: BookingStep = new BookingStep(0, false);
+  bookingStep: BookingStep = new BookingStep(0, 0, [false,false,false]);
 
   constructor(private bookingService: BookingService,
     dir: Directionality,

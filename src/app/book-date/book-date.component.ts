@@ -4,7 +4,6 @@ import { NgbModal, NgbDatepicker, NgbModalRef } from '@ng-bootstrap/ng-bootstrap
 import { BookingService } from '../booking.service';
 import { BookingData } from '../booking-data';
 import { BookingStep } from '../booking-step';
-import { CdkStep } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-book-date',
@@ -86,13 +85,13 @@ export class BookDateComponent implements OnInit {
       rate:rate
     };
 
-    // notify service
+    // notify services
     this.bookingService.changeBookingData(this.bookingData);
 
-    // enable button
     this.bookingService.changeBookingStep({
-      highestStep:1,
-      completed:true,
+      currentStep:0,
+      highestCompletedStep:0,
+      completedSteps:[true, false, false]
     });
   }
 

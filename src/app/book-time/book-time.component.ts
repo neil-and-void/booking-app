@@ -47,7 +47,9 @@ export class BookTimeComponent implements OnInit {
       if(result !== undefined){
         this.validateCompleted();
       } else { 
-        this.bookingService.changeBookingStep({highestStep:1, completed:false});  
+        let bookingStep = {...this.bookingStep};
+        bookingStep.completedSteps[1] = false;
+        this.bookingService.changeBookingStep(bookingStep);  
       }
 
     }, (reason) => {
@@ -110,14 +112,14 @@ export class BookTimeComponent implements OnInit {
   }
 
   private validateCompleted(): void{
+    let newBookingStep = new BookingStep(0,1, [true,false, false]);
     if(this.inputsAreValid()){
-      // enable buttons and mark as completed form 
-      this.bookingStep = {highestStep:2, completed:true}
+      newBookingStep.highestCompletedStep = 1;
+      newBookingStep.completedSteps = [true, true, false];
+
       this.bookingService.changeBookingData(this.bookingData);
-    } else {
-      this.bookingStep = {highestStep:1, completed:false}
     }
-    this.bookingService.changeBookingStep(this.bookingStep);
+    this.bookingService.changeBookingStep(newBookingStep);
   }
 
 }

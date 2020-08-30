@@ -1,8 +1,11 @@
 export class BookingStep {
-    highestStep:number;
-    completed:boolean;
-    constructor(highestStep:number, completed:boolean){
-        this.highestStep = highestStep;
-        this.completed = completed;
+    highestCompletedStep:number;
+    currentStep:number;
+    completedSteps:Array<boolean>;
+
+    constructor(highestCompletedStep:number, currentStep:number, completedSteps:Array<boolean>){
+        this.highestCompletedStep = highestCompletedStep;
+        this.currentStep = currentStep;
+        this.completedSteps = completedSteps;
     }
 }

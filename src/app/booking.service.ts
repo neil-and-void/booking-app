@@ -11,22 +11,16 @@ export class BookingService {
 
   private bookingDataSource = new BehaviorSubject<BookingData>(new BookingData());
   currentBookingData = this.bookingDataSource.asObservable();
-  private bookingStepSource = new BehaviorSubject<Array<BookingStep>>([]);
+  private bookingStepSource = new BehaviorSubject<BookingStep>(new BookingStep(0,-1,[false,false,false]));
   currentBookingStep = this.bookingStepSource.asObservable(); 
   
-  constructor() { 
-    let bookingStep:Array<BookingStep> = [];
-    for(let i = 0; i<3;i++){
-      bookingStep.push(new BookingStep(0, false))
-    }
-    this.bookingStepSource = new BehaviorSubject<Array<BookingStep>>(bookingStep);
-  }
+  constructor() { }
 
   changeBookingData(bookingData: BookingData):void {
     this.bookingDataSource.next(bookingData);
   }
 
-  changeBookingStep(bookingStep: Array<BookingStep>):void {
+  changeBookingStep(bookingStep: BookingStep):void {
     this.bookingStepSource.next(bookingStep);
   }
 
