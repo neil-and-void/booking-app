@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, NgbDatepicker, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, 
+  NgbDatepicker, 
+  NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { BookingService } from '../booking.service';
 import { BookingData } from '../booking-data';
@@ -15,8 +17,7 @@ export class BookDateComponent implements OnInit {
   minDate:{year:number, month:number, day:number} = {year:0, month:0, day:0};
   selectedDateStr:string;
   datepicker:NgbDatepicker;
-  disabled: boolean = true;
-  modalReference: NgbModalRef;
+  modalReference:NgbModalRef;
 
   constructor(
     private modalService: NgbModal,
@@ -38,16 +39,17 @@ export class BookDateComponent implements OnInit {
     })
   }
 
-  navigate(number: number) {
-    const {state, calendar} = this.datepicker;
-    this.datepicker.navigateTo(calendar.getNext(state.firstDate, 'm', number));
-  }
-
   open(content) {
-
-    this.modalService.open(content, {centered:true, windowClass:"date-modal", }).result.then((result) => {
+    const options = {
+      centered:true, 
+      windowClass:"date-modal"
+    };
+    this.modalService.open(content, options)
+      .result.then(
+    (result) => {
       console.log(result);
-    }, (reason) => {
+    }, 
+    (reason) => {
       console.log(reason);
     });
   }
@@ -61,7 +63,7 @@ export class BookDateComponent implements OnInit {
     const day = dateObj.getDay();
 
     // update date string
-    this.selectedDateStr = date + "/" + month + "/" + year
+    this.selectedDateStr = date + "/" + month + "/" + year;
 
     // update data
     this.bookingData = {
@@ -73,12 +75,11 @@ export class BookDateComponent implements OnInit {
       month:month,
       date:date,
       day:day,
-      rate:null
+      rate:null,
     };
 
     // notify services
     this.bookingService.changeBookingData(this.bookingData);
-
     this.bookingService.changeBookingStep({
       currentStep:0,
       highestCompletedStep:0,

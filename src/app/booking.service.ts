@@ -11,7 +11,8 @@ export class BookingService {
 
   private bookingDataSource = new BehaviorSubject<BookingData>(new BookingData());
   currentBookingData = this.bookingDataSource.asObservable();
-  private bookingStepSource = new BehaviorSubject<BookingStep>(new BookingStep(0,-1,[false,false,false]));
+  
+  private bookingStepSource = new BehaviorSubject<BookingStep>(new BookingStep(0,0,[false,false,false]));
   currentBookingStep = this.bookingStepSource.asObservable(); 
   
   constructor() { }

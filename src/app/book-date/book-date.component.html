@@ -6,15 +6,13 @@
         {{selectedDateStr ? selectedDateStr : "Pick a day!"}}
     </button>
     <ng-template #modal let-modal class="dp-modal">
-        <div>
-            <ngb-datepicker
-                firstDayOfWeek="7"
-                class="date-picker"
-                [minDate]="minDate"
-                (dateSelect)="modal.dismiss()"
-                (dateSelect)="dateSelect($event)" 
-            >
-            </ngb-datepicker>
-        </div>
+        <ngb-datepicker
+            firstDayOfWeek="7"
+            class="date-picker"
+            [minDate]="minDate"
+            (dateSelect)="modal.dismiss()"
+            (dateSelect)="dateSelect($event)" 
+        >
+        </ngb-datepicker>
     </ng-template>
 </div>

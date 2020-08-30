@@ -5,7 +5,6 @@ import { BookingService } from '../booking.service';
 import { BookingData } from '../booking-data';
 import { TimeListComponent } from '../time-list/time-list.component';
 import { BookingStep } from '../booking-step';
-import { templateJitUrl } from '@angular/compiler';
 
 
 @Component({
@@ -22,7 +21,6 @@ export class BookTimeComponent implements OnInit {
   durationErr:boolean = false;
   minsErr:boolean = false;
   timeErr:boolean = false;
-
 
   constructor(
     private bookingService: BookingService,
@@ -45,7 +43,12 @@ export class BookTimeComponent implements OnInit {
   }
 
   open() {
-    this.modalService.open(TimeListComponent, {windowClass:"time-modal", scrollable:true, centered:true}).result.then((result) => {
+    const options = {
+      windowClass:"time-modal", 
+      scrollable:true, 
+      centered:true
+    };
+    this.modalService.open(TimeListComponent, options).result.then((result) => {
       this.bookingData.time = result
       // send to service
       if(result !== undefined){
@@ -108,11 +111,18 @@ export class BookTimeComponent implements OnInit {
     if(isNaN(mins)){
       mins = 0;
     }
-    if(typeof hours === 'number' && typeof mins === 'number' && 1 <=hours+((mins&60)/60) && hours+((mins%60)/60) <= 8 ){
+    if(typeof hours === 'number' 
+      && typeof mins === 'number' 
+      && 1 <=hours+((mins&60)/60) 
+      && hours+((mins%60)/60) <= 8 
+    ) {
       this.durationErr = false;
     }
 
-    return !this.timeErr && !this.durationErr && !this.hoursErr && !this.minsErr;
+    return !this.timeErr 
+      && !this.durationErr 
+      && !this.hoursErr 
+      && !this.minsErr;
   }
 
   private validateCompleted(): void{

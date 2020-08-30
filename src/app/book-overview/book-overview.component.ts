@@ -19,7 +19,6 @@ export class BookOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookingService.currentBookingData.subscribe(bookingData => {
-
       this.bookingData = bookingData;
 
       const hours = bookingData.duration_hrs;
@@ -28,7 +27,7 @@ export class BookOverviewComponent implements OnInit {
 
       const total = this.caculateTotal(hours, minutes, rate);
 
-      this.overrall = total.toFixed(2);
+      this.overrall = total.toFixed(2); // formatting for pricing
     })
   }
 

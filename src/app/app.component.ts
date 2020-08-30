@@ -24,8 +24,7 @@ export class AppComponent implements OnInit{
   }
 
   selectionChange(event){
-    // compare highest step with current step and disable button accordingly
-
+    // update current step we are viewing
     this.bookingService.changeBookingStep({
       ...this.bookingStep,
       currentStep:event.selectedIndex
