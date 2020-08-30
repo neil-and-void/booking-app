@@ -4,8 +4,9 @@
 
 .date-button{
     display: block;
+    font-size:30px;
     background-color:white;
-    height:35px;
+    height:fit-content;
     border:1px solid #F66B47;
     color:black;
     border-radius: 5px;

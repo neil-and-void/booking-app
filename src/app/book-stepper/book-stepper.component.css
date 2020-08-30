@@ -1,14 +1,10 @@
 section {
     height: 100%;
 }
+
 ul{
     margin-top:5px;
     font-size:0;
-}
-
-li i {
-    cursor: pointer;
-    transition:0.2s
 }
 
 .step-navigation-bar {
@@ -17,6 +13,11 @@ li i {
 
 .progressbar {
     width:inherit;
+}
+
+li i {
+    cursor: pointer;
+    transition:0.2s
 }
 
 .progressbar li {

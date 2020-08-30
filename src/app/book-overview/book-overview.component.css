@@ -1,9 +1,10 @@
 .summary {
     margin-top:25px;
     position: relative;
+    font-size: 18px;
 }
 
-h3 {
+h2 {
     margin-top:50px;
     display:block;
     text-align: center;
